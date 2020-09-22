@@ -228,7 +228,7 @@ function GUI:Init()
         if (48 <= b and b <= 57) then
             return
         end
-        
+
         if char == "." and string.find(t, ".", 1, true) == #t then
             return
         end
@@ -263,7 +263,7 @@ function GUI:Init()
             edgeSize = 32,
             insets = {left = 8, right = 8, top = 10, bottom = 10}
         })
-    
+
         -- bf:SetBackdropColor(1, 1, 1, 1)
         bf:SetPoint("CENTER", f, 0, 0)
         bf:SetToplevel(true)
@@ -283,7 +283,7 @@ function GUI:Init()
             itemTexture:Show()
             itemTexture:SetPoint("TOPLEFT", bf, 20, -20)
             itemTexture:SetWidth(30)
-            itemTexture:SetHeight(30)            
+            itemTexture:SetHeight(30)
             itemTexture:SetTexture(134400) -- question mark
 
 
@@ -374,7 +374,7 @@ function GUI:Init()
                 owner:SetValue(split)
             end
         end
-        
+
         do
             hooksecurefunc(StackSplitText, "SetText", function(self, value)
                 if StackSplitFrame.owner.moneyslide then
@@ -396,7 +396,7 @@ function GUI:Init()
             s:SetObeyStepOnDrag(true)
             s.Low:SetText(SecondsToTime(5))
             s.High:SetText(SecondsToTime(60))
-    
+
             local l = s:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             l:SetPoint("RIGHT", s, "LEFT", -20, 1)
             l:SetText(L["Count down time"])
@@ -426,7 +426,7 @@ function GUI:Init()
             s:SetObeyStepOnDrag(true)
             s.Low:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(50))
             s.High:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(5000))
-    
+
             local l = s:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             l:SetPoint("RIGHT", s, "LEFT", -20, 1)
             l:SetText(L["Starting price"])
@@ -503,7 +503,7 @@ function GUI:Init()
 
                 if usepercent:GetChecked() then
                     return "PERCENT", usepercent.slide:GetValue()
-                end                
+                end
             end
 
             local ensureone = function(self)
@@ -517,13 +517,13 @@ function GUI:Init()
 
                 if usepercent:GetChecked() then
                     usepercent.slide:Show()
-                end                
+                end
             end
 
             do
                 local b = CreateFrame("CheckButton", nil, bf, "UICheckButtonTemplate")
                 b:SetPoint("TOPLEFT", bf, 30 + l:GetStringWidth(), -150)
-        
+
                 b.text = b:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                 b.text:SetPoint("LEFT", b, "RIGHT", 0, 1)
                 b.text:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(""))
@@ -543,20 +543,20 @@ function GUI:Init()
                     s:SetObeyStepOnDrag(true)
                     s.Low:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(10))
                     s.High:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(500))
-            
+
                     local l = s:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     l:SetPoint("RIGHT", s, "LEFT", -20, 1)
                     l:SetText(L["Bid increment"])
 
                     bf:SetWidth(math.max(bf:GetWidth(), l:GetStringWidth() + 220))
-        
+
                     s:SetPoint("TOPLEFT", bf, 40 + l:GetStringWidth(), -200)
-        
+
                     s:SetScript("OnValueChanged", function(self, value)
                         value = math.floor(value)
                         s.Text:SetText(GOLD_AMOUNT_TEXTURE_STRING:format(value))
                     end)
-        
+
                     s.moneyslide = true
                     s.SplitStack = slideMoneySet
                     s.slidestep = s:GetValueStep()
@@ -569,7 +569,7 @@ function GUI:Init()
                         tooltip:SetText(L["Right click to fine-tune"])
                         tooltip:Show()
                     end)
-    
+
                     s:SetScript("OnLeave", function()
                         tooltip:Hide()
                         tooltip:SetOwner(UIParent, "ANCHOR_NONE")
@@ -577,15 +577,15 @@ function GUI:Init()
 
                     s:SetValue(50)
                     s:Hide()
-        
+
                     b.slide = s
-                end                
+                end
             end
 
             do
                 local b = CreateFrame("CheckButton", nil, bf, "UICheckButtonTemplate")
                 b:SetPoint("TOPLEFT", bf, 90 + l:GetStringWidth(), -150)
-        
+
                 b.text = b:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                 b.text:SetPoint("LEFT", b, "RIGHT", 0, 1)
                 b.text:SetText("%")
@@ -603,23 +603,23 @@ function GUI:Init()
                     s:SetObeyStepOnDrag(true)
                     s.Low:SetText("1%")
                     s.High:SetText("100%")
-            
+
                     local l = s:CreateFontString(nil, "OVERLAY", "GameFontNormal")
                     l:SetPoint("RIGHT", s, "LEFT", -20, 1)
                     l:SetText(L["Bid increment"])
-        
+
                     s:SetPoint("TOPLEFT", bf, 40 + l:GetStringWidth(), -200)
-        
+
                     s:SetScript("OnValueChanged", function(self, value)
                         value = math.floor(value)
                         s.Text:SetText(value .. "%")
                     end)
-        
+
                     s:SetValue(10)
                     s:Hide()
-        
+
                     b.slide = s
-                end                
+                end
             end
 
             ensureone()
@@ -628,15 +628,15 @@ function GUI:Init()
         do
             local b = CreateFrame("CheckButton", nil, bf, "UICheckButtonTemplate")
             b:SetPoint("TOPLEFT", bf, 15, -230)
-    
+
             b.text = b:CreateFontString(nil, "OVERLAY", "GameFontNormal")
             b.text:SetPoint("LEFT", b, "RIGHT", 0, 1)
             b.text:SetText("/RA")
 
-            b:SetScript("OnClick", function() 
+            b:SetScript("OnClick", function()
                 Database:SetConfig("bfusera", b:GetChecked())
             end)
-            b:SetChecked(Database:GetConfigOrDefault("bfusera", true))            
+            b:SetChecked(Database:GetConfigOrDefault("bfusera", true))
 
             bf.usera = b
         end
@@ -646,11 +646,11 @@ function GUI:Init()
 
             local currentitem = function()
                 local entry = bf.curEntry
-                local item = entry["detail"]["item"] or entry["detail"]["displayname"]                
+                local item = entry["detail"]["item"] or entry["detail"]["displayname"]
                 item = item .. " (" .. (entry["detail"]["count"] or 1) .. ")"
                 return item
             end
-         
+
 
             local bidprice = function()
                 if not ctx then
@@ -696,13 +696,13 @@ function GUI:Init()
                     ctx.currentwinner = playerName
                     ctx.currentprice = ask * 10000
                     ctx.countdown = bf.countdown:GetValue()
-                    
+
                     -- L["Bid price"]
                     SendRaidMessage(L["Bid accept"] .. " " .. item .. " " .. L["Current price"] .. " >>" .. GetMoneyStringL(ctx.currentprice) .. "<< ".. (ctx.pause and "" or L["Time left"] .. " " .. (SECOND_ONELETTER_ABBR:format(ctx.countdown))))
                 else
                     SendRaidMessage(L["Bid denied"] .. " " .. item .. " " .. L["Must bid higher than"] .. " " .. GetMoneyStringL(bid * 10000))
                 end
-                
+
             end
 
             RegEvent("CHAT_MSG_RAID_LEADER", evt)
@@ -725,7 +725,7 @@ function GUI:Init()
                         elseif ctx.countdown < 10 then
                             ctx.countdown = 5
                         elseif ctx.countdown >= 10 then
-                            ctx.countdown = ctx.countdown - 5 
+                            ctx.countdown = ctx.countdown - 5
                         end
                     end
                     bf.UpdateButtonCountdown()
@@ -742,7 +742,7 @@ function GUI:Init()
                 b:Hide()
                 b:SetScript("OnClick", function()
                     if ctx then
-                        ctx.countdown = ctx.countdown + 5 
+                        ctx.countdown = ctx.countdown + 5
                     end
                     bf.UpdateButtonCountdown()
                 end)
@@ -767,7 +767,7 @@ function GUI:Init()
             end
 
             do
-                
+
                 local tooltip = GUI.commtooltip
 
 
@@ -788,7 +788,7 @@ function GUI:Init()
                     tooltip:SetOwner(UIParent, "ANCHOR_NONE")
                 end)
 
-                b:SetScript("OnClick", function() 
+                b:SetScript("OnClick", function()
                     if ctx then
                         bf.CancelBid()
                         return
@@ -890,7 +890,7 @@ function GUI:Init()
         end
 
         bf:Hide()
-        bf:SetScript("OnHide", function() 
+        bf:SetScript("OnHide", function()
             if GUI.mainframe:IsShown() then
                 bf.CancelBid()
             end
@@ -968,8 +968,8 @@ function GUI:Init()
         b.text:SetPoint("LEFT", b, "RIGHT", 0, 1)
         b:SetPoint("BOTTOMLEFT", f, 195, 60)
         b.text:SetText(L["Round per member credit down"])
-        b:SetScript("OnClick", function() 
-            GUI:UpdateSummary() 
+        b:SetScript("OnClick", function()
+            GUI:UpdateSummary()
             Database:SetConfig("rounddownchecked", b:GetChecked())
         end)
         b:SetChecked(Database:GetConfigOrDefault("rounddownchecked", false))
@@ -1050,7 +1050,7 @@ function GUI:Init()
             Database:AddCredit("")
             ScrollFrame_OnVerticalScroll(self.lootLogFrame.scrollframe, 0) -- move to top
         end)
-        
+
     end
 
     -- debit
@@ -1111,10 +1111,10 @@ function GUI:Init()
                     InterfaceOptionsFrame_OpenToCategory(L["Raid Ledger"])
                     InterfaceOptionsFrame_OpenToCategory(L["Raid Ledger"])
                 end,
-            },            
-            { 
-                text = "", 
-                isTitle = true, 
+            },
+            {
+                text = "",
+                isTitle = true,
                 notCheckable = true,
             },
             {
@@ -1122,9 +1122,9 @@ function GUI:Init()
                 notCheckable = true,
                 func = function(self)
                     CloseDropDownMenus()
-                end, 
+                end,
             },
-        }    
+        }
 
         local ba = CreateFrame("Button", nil, f, "GameMenuButtonTemplate")
         ba:SetWidth(25)
@@ -1151,15 +1151,15 @@ function GUI:Init()
 
 
                 table.insert(templateMenu, 3, {
-                    text = "", 
-                    isTitle = true, 
+                    text = "",
+                    isTitle = true,
                     notCheckable = true,
                 })
 
                 for i, t in pairs(templates) do
                     local ii = i
                     table.insert(templateMenu, 4, {
-                        text = t.name, 
+                        text = t.name,
                         notCheckable = true,
                         func = function()
                             applytemplate(ii)
@@ -1288,7 +1288,7 @@ function GUI:Init()
                 return (lastchat[a] or 0) > (lastchat[b] or 0)
             end)
 
-            for _, name in pairs(tmp) do 
+            for _, name in pairs(tmp) do
                 tinsert(data, {
                     ["name"] = name,
                     ["priority"] = LE_AUTOCOMPLETE_PRIORITY_IN_GROUP,
@@ -1342,7 +1342,7 @@ function GUI:Init()
 
         local iconUpdate = CreateCellUpdate(function(cellFrame, entry, idx, rowFrame)
             local tooltip = self.itemtooltip
-            
+
             cellFrame.curEntry = entry
 
             if not cellFrame.cellItemTexture then
@@ -1369,7 +1369,7 @@ function GUI:Init()
                 cellFrame.lockcheck:SetPoint("LEFT", cellFrame, "LEFT", -20, 0)
 
                 cellFrame.lockcheck:SetScript("OnClick", function()
-                    
+
                     for _, c in pairs(rowFrame.cols) do
                         if c.textBox then
                             if cellFrame.lockcheck:GetChecked() then
@@ -1401,7 +1401,7 @@ function GUI:Init()
                         owner.counttext:SetText(split)
                     end
                 end
-                
+
                 cellFrame:SetScript("OnClick", function()
                     if cellFrame.curEntry["detail"]["type"] == "ITEM" then
                         OpenStackSplitFrame(999, cellFrame, "BOTTOMLEFT", "TOPLEFT", 1)
@@ -1556,7 +1556,7 @@ function GUI:Init()
 
                 if entry["lock"] then
                     cellFrame.textBox:Disable()
-                end                
+                end
             end
 
             if not cellFrame.bidButton then
@@ -1603,46 +1603,46 @@ function GUI:Init()
         end
 
         local valueTypeMenu = {
-            {   
+            {
                 costtype = "GOLD",
-                text = GOLD_AMOUNT_TEXTURE_STRING:format(""), 
-                func = function() 
+                text = GOLD_AMOUNT_TEXTURE_STRING:format(""),
+                func = function()
                     setCostType("GOLD")
-                end, 
+                end,
             },
-            { 
+            {
                 costtype = "PROFIT_PERCENT",
-                text =  DIM_GREEN_FONT_COLOR:WrapTextInColorCode(" % " .. L["Net Profit"]), 
-                func = function() 
+                text =  DIM_GREEN_FONT_COLOR:WrapTextInColorCode(" % " .. L["Net Profit"]),
+                func = function()
                     setCostType("PROFIT_PERCENT")
-                end, 
+                end,
             },
-            { 
+            {
                 costtype = "REVENUE_PERCENT",
-                text = LIGHTBLUE_FONT_COLOR:WrapTextInColorCode(" % " .. L["Revenue"]), 
-                func = function() 
+                text = LIGHTBLUE_FONT_COLOR:WrapTextInColorCode(" % " .. L["Revenue"]),
+                func = function()
                     setCostType("REVENUE_PERCENT")
-                end, 
+                end,
             },
-            { 
+            {
                 costtype = "MUL_AVG",
-                text = " * " .. L["Per Member credit"], 
-                func = function() 
+                text = " * " .. L["Per Member credit"],
+                func = function()
                     setCostType("MUL_AVG")
-                end, 
+                end,
             },
-            { 
-                text = "", 
-                isTitle = true, 
+            {
+                text = "",
+                isTitle = true,
             },
             {
                 text = CANCEL,
                 notCheckable = true,
                 func = function(self)
                     CloseDropDownMenus()
-                end, 
+                end,
             },
-        }        
+        }
 
 
         local valueUpdate = CreateCellUpdate(function(cellFrame, entry)
@@ -1687,7 +1687,7 @@ function GUI:Init()
                     for _, m in pairs(valueTypeMenu) do
                         m.checked = m.costtype == type
                     end
-                
+
                     EasyMenu(valueTypeMenu, menuFrame, "cursor", 0 , 0, "MENU");
                 end)
 
@@ -1847,7 +1847,7 @@ function GUI:Init()
             b:SetText(self.value)
             CloseDropDownMenus()
         end
-    
+
         local reportChannelChecked = function(self)
             return self.arg1 == optctx.channel
         end
@@ -1858,30 +1858,30 @@ function GUI:Init()
                 text = CHANNEL,
                 notCheckable = true,
             }, -- 0
-            { 
-                text = CHANNEL, 
+            {
+                text = CHANNEL,
                 hasArrow = true,
                 notCheckable = true,
                 menuList = {
-                    {   
+                    {
                         arg1 = "RAID",
-                        text = RAID, 
-                        func = setReportChannel, 
+                        text = RAID,
+                        func = setReportChannel,
                         checked = reportChannelChecked,
                     },
-                    {   
+                    {
                         arg1 = "GUILD",
-                        text = GUILD, 
-                        func = setReportChannel, 
+                        text = GUILD,
+                        func = setReportChannel,
                         checked = reportChannelChecked,
                     },
-                    {   
+                    {
                         arg1 = nil,
-                        text = L["Last used"], 
-                        func = setReportChannel, 
+                        text = L["Last used"],
+                        func = setReportChannel,
                         checked = reportChannelChecked,
                     },
-                } 
+                }
             }, -- 1
             {
                 isTitle = true,
@@ -1889,23 +1889,23 @@ function GUI:Init()
                 notCheckable = true,
             },
             {
-                text = L["Summary"], 
+                text = L["Summary"],
                 func = function()
                     GenReport(Database:GetCurrentLedger()["items"], GUI:GetSplitNumber(), optctx.channel, {
                         short = true,
                         filterzero = optctx.filterzero,
                         rounddown = GUI.rouddownCheck:GetChecked(),
                     })
-                end, 
+                end,
                 notCheckable = true,
             },
             {
-                text = L["Subgroup total"], 
+                text = L["Subgroup total"],
                 func = function()
 
                     local c = 0
                     local groups = {}
-    
+
                     for i = 1, MAX_RAID_MEMBERS do
                         local name, _, subgroup = GetRaidRosterInfo(i)
                         if name then
@@ -1918,11 +1918,11 @@ function GUI:Init()
                             if not groups[subgroup].assist and rt then
                                 groups[subgroup].assist = " {rt" .. i .. "} " .. UnitName("raid" .. i) .. " {rt" .. i .. "} "
                             end
-                            
+
                             groups[subgroup].members[name] = true
                         end
                     end
-    
+
                     local specials = {}
                     local _, avg = calcavg(Database:GetCurrentLedger()["items"], GUI:GetSplitNumber(), nil, function(entry, cost)
                         local b = entry["beneficiary"]
@@ -1957,13 +1957,13 @@ function GUI:Init()
                     end
 
                     table.insert(lines, L["Per Member"] .. ": " .. GetMoneyStringL(avg))
-    
+
                     SendToChatSlowly(lines, optctx.channel)
-                end, 
+                end,
                 notCheckable = true,
             },
             {
-                text = L["0 credit items"], 
+                text = L["0 credit items"],
                 func = function()
                     local items = Database:GetCurrentLedger()["items"]
                     local lines = {}
@@ -1990,16 +1990,17 @@ function GUI:Init()
                         end
                     end
 
+                    table.insert(lines, L["0 credit items"])
                     for i, c in pairs(countby) do
                         table.insert(lines, i .. " * " .. c)
                     end
 
                     SendToChatSlowly(lines, optctx.channel)
-                end, 
+                end,
                 notCheckable = true,
             },
             {
-                text = L["Credit"], 
+                text = L["Credit"],
                 func = function()
                     local lines = {}
                     local _, _, revenue = calcavg(Database:GetCurrentLedger()["items"], GUI:GetSplitNumber(), function(item, cost)
@@ -2016,17 +2017,17 @@ function GUI:Init()
                     table.insert(lines, L["Revenue"] .. ": " .. revenue)
 
                     SendToChatSlowly(lines, optctx.channel)
-                    
-                end, 
+
+                end,
                 notCheckable = true,
             },
             {
-                text = L["Debit"], 
+                text = L["Debit"],
                 func = function()
                     GenReport(Database:GetCurrentLedger()["items"], GUI:GetSplitNumber(), optctx.channel, {
                         expenseonly = true,
                     })
-                end, 
+                end,
                 notCheckable = true,
             },
             {
@@ -2035,28 +2036,28 @@ function GUI:Init()
                 notCheckable = true,
             },
             {
-                text = FILTER .. " " .. L["0 credit items"], 
+                text = FILTER .. " " .. L["0 credit items"],
                 isNotRadio = true,
                 func = function(self)
                     optctx.filterzero = not optctx.filterzero
                     Database:SetConfig("filterzero", optctx.filterzero)
-                end, 
+                end,
                 checked = function(self)
                     return optctx.filterzero
                 end
             },
-            { 
-                text = "", 
-                isTitle = true, 
+            {
+                text = "",
+                isTitle = true,
             },
             {
                 text = CANCEL,
                 notCheckable = true,
                 func = function(self)
                     CloseDropDownMenus()
-                end, 
+                end,
             },
-        }        
+        }
 
         b:SetScript("OnClick", function(self, button)
             if button == "RightButton" then
@@ -2085,7 +2086,7 @@ function GUI:Init()
         b:SetScript("OnLeave", function()
             tooltip:Hide()
             tooltip:SetOwner(UIParent, "ANCHOR_NONE")
-        end)        
+        end)
     end
 
     -- export btn
@@ -2139,10 +2140,10 @@ function GUI:Init()
                         format = "csv"
                     }, true)
                 end,
-            },            
-            { 
-                text = "", 
-                isTitle = true, 
+            },
+            {
+                text = "",
+                isTitle = true,
                 notCheckable = true,
             },
             {
@@ -2150,10 +2151,10 @@ function GUI:Init()
                 notCheckable = true,
                 func = function(self)
                     CloseDropDownMenus()
-                end, 
+                end,
             },
-        }    
-        
+        }
+
         local ba = CreateFrame("Button", nil, f, "GameMenuButtonTemplate")
         ba:SetWidth(25)
         ba:SetHeight(25)
@@ -2168,7 +2169,7 @@ function GUI:Init()
 
         ba:SetScript("OnClick", function(self, button)
             EasyMenu(formatMenu, menuFrame, "cursor", 0 , 0, "MENU");
-        end)        
+        end)
     end
 
 end
