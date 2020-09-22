@@ -377,13 +377,13 @@ ADDONSELF.genreport = function(items, n, channel, conf)
         end
     end
 
-    table.sort(looter, function(a, b)
-        return a["cost"] > b["cost"]
-    end)
+    -- table.sort(looter, function(a, b)
+    --     return a["cost"] > b["cost"]
+    -- end)
 
-    table.sort(compensation, function(a, b)
-        return a["compensation"] > b["compensation"]
-    end)
+    -- table.sort(compensation, function(a, b)
+    --     return a["compensation"] > b["compensation"]
+    -- end)
 
     if #looter > 0 then
         local c = math.min(#looter, 40)
@@ -444,8 +444,7 @@ ADDONSELF.genreport = function(items, n, channel, conf)
     table.insert(lines, L["Net Profit"] .. ": " .. profit)
     table.insert(lines, L["Split into"] .. ": " .. n)
     table.insert(lines, L["Per Member credit"] .. ": [" .. avg .. (conf.rounddown and (" (" .. L["Round down"] .. ")]") or "]"))
-        table.insert(lines, "--------- RaidLedger金团账本 ---------")
+        table.insert(lines, "------- RaidLedger 天啟专用版 --------")
 
     sendchat(lines, channel)
-
 end
