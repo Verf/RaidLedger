@@ -108,7 +108,7 @@ RegEvent("ADDON_LOADED", function()
 
     icon:Register("RaidLedger", ldb:NewDataObject("RaidLedger", {
             icon = "Interface\\Icons\\inv_misc_note_03",
-            OnClick = function() 
+            OnClick = function()
                 if GUI.mainframe:IsShown() then
                     GUI.mainframe:Hide()
                 else
@@ -187,12 +187,12 @@ end
 
 SlashCmdList["RAIDLEDGER"] = function(msg, editbox)
     local cmd, what = msg:match("^(%S*)%s*(%S*)%s*$")
-
-    if cmd == "" then
+    local toggle_flag = false
+    if cmd == "show" then
         GUI:Show()
 
-        Print(L["Shift + item/name to add to record"])
-        Print(L["Right click to remove record"])
+        -- Print(L["Shift + item/name to add to record"])
+        -- Print(L["Right click to remove record"])
         -- Print(L["Shift + Right click to remove ALL SAME record"])
         -- ShowCurrentAutoLootType()
         -- Print("[".. L["/raidledger"] .. " toggle] " .. L["toggle Auto recording on/off"])
@@ -201,6 +201,16 @@ SlashCmdList["RAIDLEDGER"] = function(msg, editbox)
     --     AutoAddLoot = (AutoAddLoot + 1) % 3
     --     Database:SetConfig("autoaddloot", AutoAddLoot)
     --     ShowCurrentAutoLootType()
+    elseif cmd == "hide" then
+        GUI:Hide()
+    elseif cmd == "toggle" then
+        if toggle_flag == false then
+            GUI:Show()
+            toggle_flag = true
+        else
+            GUI:Hide()
+            toggle_flag = false
+        end
     else
         local _, itemLink = GetItemInfo(strtrim(msg))
         if itemLink then
